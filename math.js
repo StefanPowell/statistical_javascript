@@ -40,25 +40,39 @@ function mode(values){
 
 function ascending(values){
 	for(var j=0; j < values.length; j++){
-		//	
+		//use one type of sort
 	}
 }
 
 function descending(values){
-	//
-}
-
-
-function std(values){
-	//standard deviation
+	//use another type of sorying algorithm
 }
 
 
 function vari(values){
-	//variance
+	//standard deviation
+	var meanval = mean(values);
+	for(var a = 0; a < values.length; a++){ //value - mean calculation
+		values[a] = values[a] - meanval;
+		values[a] = Math.pow(values[a], 2); //square calculation
+	}
+	//summate
+	var summate = 0;
+	for(var b = 0; b < values.length; b++){
+		summate = values[b] + summate;
+	}
+	var val = summate/(values.length - 1);
+	return val;
 }
 
-function parse(func){
+
+function std(values){
+	//check for errors
+	var variance = vari(values);
+	return Math.sqrt(variance);
+}
+
+function curry(func, values){
 	//
 }
 
