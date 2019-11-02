@@ -68,6 +68,7 @@ function vari(values){
 
 function std(values){
 	//check for errors
+	//need to fix
 	var variance = vari(values);
 	return Math.sqrt(variance);
 }
