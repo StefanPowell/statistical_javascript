@@ -1,3 +1,5 @@
+//math.js
+
 function mean(values){
 	total = 0;
 	for(var i=0; i < values.length; i++){
@@ -11,6 +13,14 @@ function median(values){
 		//if not ordered properly
 			//oreder properly
 	//find the medain
+}
+
+function fact(num){
+	var s = 1;
+	for(var m = num; m != 0; m--){
+		s = s * m;
+	}
+	return s;
 }
 
 function summ(func, start, end){
@@ -69,8 +79,6 @@ function vari(values){
 function std(values){
 	//check for errors
 	//need to fix
-	var variance = vari(values);
-	return Math.sqrt(variance);
 }
 
 function curry(func, values){
