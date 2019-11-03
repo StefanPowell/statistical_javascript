@@ -15,14 +15,6 @@ function median(values){
 	//find the medain
 }
 
-function fact(num){
-	var s = 1;
-	for(var m = num; m != 0; m--){
-		s = s * m;
-	}
-	return s;
-}
-
 function summ(func, start, end){
 	//need to parse the functions
 	sum = 0;
@@ -79,6 +71,34 @@ function vari(values){
 function std(values){
 	//check for errors
 	//need to fix
+}
+
+function fact(num){
+	var s = 1;
+	for(var m = num; m != 0; m--){
+		s = s * m;
+	}
+	return s;
+}
+
+function perm(n, r){
+	return (fact(n)/fact(n-r));
+}
+
+function comb(n, r){
+	return(perm(n, r)/fact(r));
+}
+
+function binom(n, x, p){
+	return(comb(n,x)* Math.pow(p, x) * Math.pow((1-p), (n-x)));
+}
+
+function geodist(p, k){
+	return(p * Math.pow((1-p), (k-1)));
+}
+
+function hypergeo(K, k, N, n){
+	return( (comb(K,k) * comb((N-K), (n-k))) / comb(N, n) );
 }
 
 function curry(func, values){
