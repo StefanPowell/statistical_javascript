@@ -40,10 +40,36 @@ function mode(values){
 	return array_count;
 }
 
-function ascending(values){
-	for(var j=0; j < values.length; j++){
-		//use one type of sort
+function swap(array, l_index, s_index){
+	new_array = [];
+	for(var y = 0; y < array.length; y ++){
+		if(y == l_index){
+			new_array[y] = array[s_index];
+		}
+		else if(y == s_index){
+			new_array[y] = array[l_index];
+		}
+		else{
+			new_array[y] = array[y];
+		}
 	}
+	return new_array;
+}
+
+
+function ascending(values){
+	keep_check = 0
+	for(var j=0; j < values.length; j++){
+		if(values[j] > values[j+1]){
+			values = swap(values, j-1, j)
+		}else{
+			keep_check = keep_check + 1
+		}
+	}
+	if(keep_check != values.length){
+		return values*ascending(values)
+	}
+	return values
 }
 
 function descending(values){
