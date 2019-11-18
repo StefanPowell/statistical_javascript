@@ -10,20 +10,19 @@
 	}
 	new_text = new_text.concat("</div>");
 	document.getElementById("soduku").innerHTML = new_text;
-	
-	
+
+
 	var block_across = document.getElementById("block_across").innerHTML;
 	var new_text = "<div id='full_block'>";
 	for(var i=0; i < 3;i++){
 		new_text = new_text.concat(block_across )
 	}
 	new_text = new_text.concat("</div>")
-	document.getElementById("block_across").innerHTML = new_text;		
+	document.getElementById("block_across").innerHTML = new_text;
 </script>
-
 <style>
 #soduku{
-	border:1px solid red;	
+	border:1px solid red;
 	width:200px;
 	width:200px;
 }
