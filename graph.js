@@ -51,11 +51,26 @@ function scatterplot(xvalues, yvalues){
 	document.getElementById('hold').innerHTML = points;
 }
 
-function linegraph(){
-	//use scatterplot but with restrictions and add lines
+function linegraph(values){
 	document.getElementById('hold').style = "border:1px solid red;";
 	document.getElementById("lineg").style.display = "block";
-	document.getElementById("poly").setAttribute('points', "0,0 0,100" );
+	var x_increments = 200/values.length; //increments do not use extreme ends, need to make sure they use ends
+	x_points = [];
+	for(var i = 0; i < values.length; i++){
+		push_value = 200 - (x_increments*i);
+		x_points.push(push_value)
+	}
+	max_value = getmax(values);
+	y_points = []
+	for(var j = 0; j < values.length; j++){
+		y_points.push( ((values[j]/max_value)*100) );
+	}
+	var all = "";
+	for (var i = 0; i < values.length; i++) {
+				xy = x_points[i].toString() + "," + y_points[i].toString() + " ";
+				all = all.concat(xy);
+	}
+	document.getElementById("poly").setAttribute('points', all );
 }
 
 function pie_chart(){
