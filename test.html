@@ -1,18 +1,26 @@
 <script src="math.js"></script>
 <script src="graph.js"></script>
-
 <div class="holder" id="hold">
-	
+	<svg id="lineg" style="display:none;" viewBox="-10 -10 220 120" xmlns="http://www.w3.org/2000/svg">
+	  <polyline id="poly" stroke="black" fill="none" points=""/>
+	</svg>
 </div>
-
 <style>
 	.holder{
 		width:1000px;
 		height:500px;
 		transform: scale(-1, -1);
+
 	}
 	.bar_graph{
 		position: relative;
-    	float: right;	
+    	float: right;
 	}
+	.dot {
+  height: 5px;
+  width: 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
 </style>
