@@ -1,4 +1,10 @@
-//graph .js
+// graph .js
+// Author : Stefan Powell
+// https://github.com/StefanPowell
+
+
+//use object oriented programming for each bar_graph
+
 function getmax(values){
 	max = 0;
 	for(var t = 0; t < values.length; t++){
@@ -13,6 +19,21 @@ function resetgraph(){
 	document.getElementById('hold').innerHTML = "";
 }
 
+function xpoints_stable(x_count, x_width){
+	// x_count - number of points to use
+	// x_width - width of x axis
+	// x_points - all the areas for a point
+	x_points = []
+	if(x_count == 1){
+		console.log("insufficient data");
+	}if(x_count == 2){
+		x_points.push(x_width)
+		x.points.push(0)
+	}else{
+
+	}
+}
+
 function plotbargraph(barscount, y_values) {
 	//takes the number of bars and the array of their values
   var bar_width = 100/barscount;
@@ -23,16 +44,15 @@ function plotbargraph(barscount, y_values) {
   for(var x = 0; x < barscount; x++){
 	var bar_height = (y_values[x]/max_height)*100;
 	var margintop = 100 - bar_height;
-	var div_add = "<div class='bar_graph' style='border:5px solid white;background-color:red;width:" + (bar_width - 2) + "%;height:" + bar_height + "%;'></div>";
+	var div_add = "<div class='bar_graph' style='border:5px solid white;background-color:blue;width:" + (bar_width - 2) + "%;height:" + bar_height + "%;'></div>";
   	str = str.concat(div_add);
   }
   div.innerHTML = str;
   document.getElementById('hold').appendChild(div);
 }
 
-function bar_graph(x_values, y_values){
-	var xcount = x_values.length;
-	var ycount = y_values.length;
+function bar_graph(y_values){
+	var xcount = y_values.length;
 	plotbargraph(xcount, y_values);
 }
 
@@ -54,6 +74,7 @@ function scatterplot(xvalues, yvalues){
 function linegraph(values){
 	document.getElementById('hold').style = "border:1px solid red;";
 	document.getElementById("lineg").style.display = "block";
+	//max 200 min 0
 	var x_increments = 200/values.length; //increments do not use extreme ends, need to make sure they use ends
 	x_points = [];
 	for(var i = 0; i < values.length; i++){
