@@ -10,6 +10,16 @@ function mean(values){
 	return (total/values.length);
 }
 
+function getmax(values){
+	max = 0;
+	for(var t = 0; t < values.length; t++){
+		if(values[t] > max){
+			max = values[t];
+		}
+	}
+	return max;
+}
+
 function median(values){
 	//values should be arranged from smallest to largest
 	if(values.length%2 != 0){
@@ -21,10 +31,9 @@ function median(values){
 	}
 }
 
-function summ(func, start, end){
-	//need to parse the functions
+function summ(values){
 	sum = 0;
-	for(var z = start; z < end; z++){
+	for(var z = 0; z < values.length; z++){
 		sum = sum + values[z];
 	}
 	return sum;
@@ -135,4 +144,40 @@ function hypergeo(K, k, N, n){
 
 function curry(func, values){
 	//
+}
+
+function square(x){
+	return x*x;
+}
+
+function linear_regression(x_var, y_var){
+	mean_x = mean(x_var);
+	mean_y = mean(y_var);
+	// x - x^bar var x_xbar
+	// y - y^bar var y_ybar
+	// square x^bar is  x_xbar_sq
+	// xy_bar  = x_xbar * y_ybar
+	x_xbar = []
+	for(c=0; c < x_var.length; c++){x_xbar.push((x_var[c] - mean_x))}
+	y_ybar = []
+	for(c=0; c < y_var.length; c++){y_ybar.push((y_var[c] - mean_y))}
+	x_xbar_sq = []
+	for(c=0; c < x_var.length; c++){x_xbar_sq.push(square(x_xbar[c]))}
+	xy_bar = []
+	for(c=0; c < y_var.length; c++){xy_bar.push((x_xbar[c] * y_ybar[c]))}
+
+	b1 = summ(xy_bar)/(summ(x_xbar_sq));
+	// mean_y = b0 + (b1 * x_var	) b0 is y-intercept
+	b0 = mean_y - (b1 * mean_x);
+
+	linear_startpoint = [0, b0];
+	linear_midpoint = [mean_x, mean_y];
+	linear_endpoint = [getmax(x_var), (b0 + (b1*getmax(x_var)))]
+
+	point_coor = [];
+	point_coor.push(linear_startpoint);
+	point_coor.push(linear_midpoint);
+	point_coor.push(linear_endpoint);
+
+	return point_coor;
 }

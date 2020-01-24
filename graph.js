@@ -12,17 +12,6 @@ js.type = "text/javascript";
 js.src = "./math.js";
 importjs.concat(js);
 
-
-function getmax(values){
-	max = 0;
-	for(var t = 0; t < values.length; t++){
-		if(values[t] > max){
-			max = values[t];
-		}
-	}
-	return max;
-}
-
 function resetgraph(){
 	document.getElementById('hold').innerHTML = "";
 }
@@ -98,6 +87,16 @@ function linegraph(values){
 				all = all.concat(xy);
 	}
 	document.getElementById("poly").setAttribute('points', all );
+}
+
+function add_regression(x_values, y_values){
+	document.getElementById('hold').style = "border:1px solid red;";
+	document.getElementById("lineg").style.display = "block";
+	linear_points = "";
+	linear_regression = linear_regression(x_values, y_values);
+	linear_line = linear_regression[0].toString() + " " + linear_regression[1].toString() + " " + linear_regression[2].toString()
+	linear_points = linear_points.concat(linear_line);
+	document.getElementById("poly").setAttribute('points', linear_points);
 }
 
 function pie_chart(){
