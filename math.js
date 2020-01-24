@@ -1,4 +1,6 @@
 //math.js
+// Author : Stefan Powell
+// https://github.com/StefanPowell
 
 function mean(values){
 	total = 0;
@@ -9,10 +11,14 @@ function mean(values){
 }
 
 function median(values){
-	//check if they are ordered properly
-		//if not ordered properly
-			//oreder properly
-	//find the medain
+	//values should be arranged from smallest to largest
+	if(values.length%2 != 0){
+			var position = (((values.length-1)/2)+1);
+			return values[position-1];
+	}else{
+			var position = ((values.length)/2);
+			return ((values[position-1] + values[position])/2);
+	}
 }
 
 function summ(func, start, end){
@@ -130,4 +136,3 @@ function hypergeo(K, k, N, n){
 function curry(func, values){
 	//
 }
-
