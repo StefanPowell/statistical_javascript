@@ -3,7 +3,15 @@
 // https://github.com/StefanPowell
 
 
-//use object oriented programming for each bar_graph
+//use object oriented programming for each graph
+
+//import a javascript file to use functions
+importjs = ""
+var js = document.createElement("script");
+js.type = "text/javascript";
+js.src = "./math.js";
+importjs.concat(js);
+
 
 function getmax(values){
 	max = 0;
@@ -19,19 +27,17 @@ function resetgraph(){
 	document.getElementById('hold').innerHTML = "";
 }
 
-function xpoints_stable(x_count, x_width){
-	// x_count - number of points to use
-	// x_width - width of x axis
-	// x_points - all the areas for a point
-	x_points = []
-	if(x_count == 1){
-		console.log("insufficient data");
-	}if(x_count == 2){
-		x_points.push(x_width)
-		x.points.push(0)
-	}else{
-
+function xpoints_stable(count, min_width, max_width){
+	axispoint = [];
+	start = max_width;
+	incr = max_width/count;
+	axispoint.push(max_width);
+	for(x = 0; x < (count-1); x++){
+		start = start - incr;
+		axispoint.push(start);
 	}
+	axispoint.push(min_width);
+	return axispoint;
 }
 
 function plotbargraph(barscount, y_values) {
