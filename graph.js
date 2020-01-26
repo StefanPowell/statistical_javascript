@@ -12,6 +12,9 @@ js.type = "text/javascript";
 js.src = "./math.js";
 importjs.concat(js);
 
+scatter_x = []
+scatter_y = []
+
 function resetgraph(){
 	document.getElementById('hold').innerHTML = "";
 }
@@ -52,18 +55,27 @@ function bar_graph(y_values){
 }
 
 function scatterplot(xvalues, yvalues){
-	//takes an array of x and y values
-	document.getElementById('hold').style = "border:1px solid red;";
+	scatter_x = []
+	scatter_y = []
 	xvalues_max = getmax(xvalues);
 	yvalues_max = getmax(yvalues);
 	var points = "";
 	for(var z = 0; z < yvalues.length; z++){
 		pointx = 100 - ((xvalues[z]/xvalues_max)*100);
 		pointy = (yvalues[z]/yvalues_max)*100;
+		scatter_x.push(pointx)
+		scatter_y.push(pointy)
 		var newpoint = "<span style='position:fixed;top:"+pointy+"%;left:"+pointx+"%;' class='dot'></span>";
 		points = points.concat(newpoint);
 	}
-	document.getElementById('hold').innerHTML = points;
+	innerhtml = document.getElementById('hold').innerHTML;
+	document.getElementById('hold').innerHTML  = innerhtml.concat(points);
+
+	//set x axis
+	perc = []
+	for(i=10; i<100; i+=20){n = percentage(i, xvalues_max);perc.push(n);}
+	x_axis(perc[0], perc[1], perc[2], perc[3], perc[4]);
+
 }
 
 function linegraph(values){
@@ -89,11 +101,19 @@ function linegraph(values){
 	document.getElementById("poly").setAttribute('points', all );
 }
 
-function add_regression(x_values, y_values){
+function x_axis(x1, x2, x3, x4, x5){
+	document.getElementById('x1').innerHTML  = (x1.toString());
+	document.getElementById('x2').innerHTML  = (x2.toString());
+	document.getElementById('x3').innerHTML  = (x3.toString());
+	document.getElementById('x4').innerHTML  = (x4.toString());
+	document.getElementById('x5').innerHTML  = (x5.toString());
+}
+
+function add_regression(){
 	document.getElementById('hold').style = "border:1px solid red;";
 	document.getElementById("lineg").style.display = "block";
 	linear_points = "";
-	linear_regression = linear_regression(x_values, y_values);
+	linear_regression = linear_regression(scatter_x, scatter_y);
 	linear_line = linear_regression[0].toString() + " " + linear_regression[1].toString() + " " + linear_regression[2].toString()
 	linear_points = linear_points.concat(linear_line);
 	document.getElementById("poly").setAttribute('points', linear_points);
