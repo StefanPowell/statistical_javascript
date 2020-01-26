@@ -150,6 +150,10 @@ function square(x){
 	return x*x;
 }
 
+function percentage(p, tot){
+	return (tot/100)*p;
+}
+
 function linear_regression(x_var, y_var){
 	mean_x = mean(x_var);
 	mean_y = mean(y_var);
@@ -175,9 +179,9 @@ function linear_regression(x_var, y_var){
 	linear_endpoint = [getmax(x_var), (b0 + (b1*getmax(x_var)))]
 
 	point_coor = [];
-	point_coor.push(linear_startpoint);
-	point_coor.push(linear_midpoint);
 	point_coor.push(linear_endpoint);
+	point_coor.push(linear_midpoint);
+	point_coor.push(linear_startpoint);
 
 	return point_coor;
 }
